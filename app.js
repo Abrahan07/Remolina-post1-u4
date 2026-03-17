@@ -48,3 +48,16 @@ function agregarTarjeta() {
 }
 // Registrar el evento del botón
 document.querySelector("#btn-agregar").addEventListener("click", agregarTarjeta);
+
+galeria.addEventListener("click", (e) => {
+    if (!e.target.matches(".btn-eliminar")) return;
+
+    const idEliminar = Number(e.target.dataset.id);
+
+    // Eliminar del estado
+    tarjetas = tarjetas.filter(t => t.id !== idEliminar);
+
+    // Eliminar del DOM (CORREGIDO)
+    const elementoTarjeta = galeria.querySelector(`[data-id="${idEliminar}"]`);
+    if (elementoTarjeta) elementoTarjeta.remove();
+});
